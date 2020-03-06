@@ -1,3 +1,10 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  mount Sidekiq::Web => '/sidekiq'
+
+  namespace :api do
+    scope module: :v1 do
+      get '/status', to: 'ssl_checker#status'
+      post '/domain', to: 'ssl_checker#add_domain'
+    end
+  end
 end

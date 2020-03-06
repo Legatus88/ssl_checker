@@ -1,0 +1,4 @@
+:schedule:
+  check_ssl:
+    every: 20m
+    class: CheckSslJob
